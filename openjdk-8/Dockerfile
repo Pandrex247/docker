@@ -5,8 +5,8 @@ FROM ubuntu:vivid
 # ----------
 MAINTAINER David Winters <dwinters@c2b2.co.uk>
 
-ENV PAYARA_PKG https://s3-eu-west-1.amazonaws.com/payara.co/Payara+Downloads/payara-4.1.152.1.zip
-ENV PKG_FILE_NAME payara-4.1.152.1.zip
+ENV PAYARA_PKG https://s3-eu-west-1.amazonaws.com/payara.co/Payara+Downloads/Payara+4.1.1.161/payara-4.1.1.161.zip
+ENV PKG_FILE_NAME payara-4.1.1.161.zip
 
 #Instal packages on ubuntu base image
 

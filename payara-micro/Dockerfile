@@ -13,7 +13,7 @@ ENV PKG_FILE_NAME payara-micro.jar
 RUN \
  apt-get update && \ 
  apt-get install -y wget && \ 
- apt-get install -y software-properties-common python-software-properties \
+ apt-get install -y software-properties-common python-software-properties && \
  apt-get install -y openjdk-8-jdk
 
 # add payara user, download payara micro build. Download sample war app and package on image.

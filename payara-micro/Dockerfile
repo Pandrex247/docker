@@ -8,7 +8,7 @@ MAINTAINER David Winters <dwinters@c2b2.co.uk>
 ENV PAYARA_PKG https://s3-eu-west-1.amazonaws.com/payara.co/Payara+Downloads/Payara+4.1.1.161/payara-micro-4.1.1.161.jar
 ENV PKG_FILE_NAME payara-micro.jar
 
-#Install packages on ubuntu base image
+# Install packages on ubuntu base image
 
 RUN \
  apt-get update && \ 
@@ -27,4 +27,3 @@ RUN chown -R payara:payara /opt
 USER payara
 WORKDIR /opt
 ENTRYPOINT ["java", "-jar", "payara-micro.jar", "--deploymentDir", "/opt/payara-micro-wars"]
-

@@ -43,14 +43,19 @@ USER payara
 WORKDIR /opt/payara41/glassfish/bin
 
 # User: admin / Pass: glassfish
-RUN echo "admin;{SSHA256}80e0NeB6XBWXsIPa7pT54D9JZ5DR5hGQV1kN1OAsgJePNXY6Pl0EIw==;asadmin" > /opt/payara41/glassfish/domains/payaradomain/config/admin-keyfile
-RUN echo "AS_ADMIN_PASSWORD=glassfish" > pwdfile
-
-# enable secure admin to access DAS remotely. Note we are using the domain payaradomain
 RUN \
-  ./asadmin start-domain payaradomain && \
-  ./asadmin --user admin --passwordfile pwdfile enable-secure-admin && \
-  ./asadmin stop-domain payaradomain
+  echo "AS_ADMIN_PASSWORD=glassfish" > pwdfile && \
+  for D in domain1 payaradomain; do \
+    echo "admin;{SSHA256}80e0NeB6XBWXsIPa7pT54D9JZ5DR5hGQV1kN1OAsgJePNXY6Pl0EIw==;asadmin" > /opt/payara41/glassfish/domains/${D}/config/admin-keyfile ; \
+  done
+
+# enable secure admin to access DAS remotely for domain1 and payaradomain
+RUN \
+  for D in domain1 payaradomain; do \
+    ./asadmin start-domain ${D} && \
+    ./asadmin --user admin --passwordfile pwdfile enable-secure-admin && \
+    ./asadmin stop-domain ${D} ; \
+  done
 
 RUN echo "export PATH=$PATH:/opt/payara41/glassfish/bin" >> /opt/payara/.bashrc
 

@@ -1,5 +1,5 @@
 #!/bin/bash
-IMAGE_NAME=payara:latest.micro.oraclejdk8
+IMAGE_NAME=payara:4.1.1.161.micro.openjdk8
 
 docker build -t $IMAGE_NAME .
 
